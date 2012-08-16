@@ -53,7 +53,7 @@ sub CreateCatalog {
 		print FILE "<summary>\n$txt\n</summary>\n";
 		$txt = $meta{"coverimg"};
 		print FILE "<link rel=\"http://opds-spec.org/image\" href=\"$txt\" type=\"image/jpeg\">\n";
-		print FILE "<link rel=\"http://opds-spec.org/acquisition\" href=\"$acqprefix$epubname\" type=\"application/html\">\n";
+		print FILE "<link rel=\"http://opds-spec.org/acquisition\" href=\"$acqprefix$epubname\" type=\"application/epub+zip\">\n";
 		print FILE "</entry>\n";
 	}
 	print FILE "</feed>\n";

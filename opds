@@ -1,4 +1,8 @@
 #!/usr/bin/perl
+# Written by Ori Idan <ori@helicontech.co.il>
+#
+# Script to create an OPDS catalog feed xml file from EPUB files in one directory.
+
 $pkgdir = "/usr/local/share/oepbs";
 
 use warnings;

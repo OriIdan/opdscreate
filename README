@@ -1,6 +1,8 @@
 OPDS create
 Create an OPDS catalog feed from EPUB files in one directory.
 
+License: GPL version 2.0
+
 The GUI contains the following entries:
 Directory - Choose files directory (default to current directory if not same directory as software)
 Catalog ID - Unique ID for catalog
