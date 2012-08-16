@@ -20,7 +20,6 @@ $progdir = dirname(rel2abs($0));
 $basedir = $progdir;
 my $guifile = "$basedir/opds.gui";
 unless(-e $guifile) {
-	print "Got here ($guifile)\n";
 	$basedir = $pkgdir;
 	$guifile = "$basedir/opds.gui";
 }
@@ -35,7 +34,6 @@ my $cwd = getcwd();
 if($progdir ne $cwd) {
 	my $ctrl = $builder->get_object("directory");
 	$ctrl->set_filename($cwd);
-#	LoadContents($cwd);
 }
 
 my $window = $builder->get_object("window1") or die "Can't open main window";

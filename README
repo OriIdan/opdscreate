@@ -1,0 +1,15 @@
+OPDS create
+Create an OPDS catalog feed from EPUB files in one directory.
+
+The GUI contains the following entries:
+Directory - Choose files directory (default to current directory if not same directory as software)
+Catalog ID - Unique ID for catalog
+Self link - Link that will be used as self link in OPDS file.
+Root link - Link that will be used as root link in OPDS file.
+File name - Name of generated xml file
+Catalog creator - Used for <author> element on ODPS file
+Acquisition link prefix - The feed will contain links to entries of type "http://opds-spec.org/acquisition" the href of the link will be this prefix with the file name added to it.
+
+Currently this script will generate only a single level catalog feed.
+
+
