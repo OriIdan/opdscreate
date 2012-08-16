@@ -1,0 +1,78 @@
+#!/usr/bin/perl
+$pkgdir = "/usr/local/share/oepbs";
+
+use warnings;
+use strict;
+our($builder, $progdir, $basedir, $pkgdir);
+
+use utf8;   # Needed for Hebrew
+use Encode;
+use POSIX qw/strftime/;
+use File::Spec::Functions qw(rel2abs);
+use File::Basename;
+use File::Copy;
+use Cwd;
+use Glib;
+use Gtk2 '-init';
+
+$progdir = dirname(rel2abs($0));
+
+$basedir = $progdir;
+my $guifile = "$basedir/opds.gui";
+unless(-e $guifile) {
+	print "Got here ($guifile)\n";
+	$basedir = $pkgdir;
+	$guifile = "$basedir/opds.gui";
+}
+
+require "$basedir/opdscreate.pl";
+
+# print "GUI file: $guifile\n";
+$builder = Gtk2::Builder->new();
+$builder->add_from_file($guifile) or die "Couldn't read $guifile";
+$builder->connect_signals( undef );
+my $cwd = getcwd();
+if($progdir ne $cwd) {
+	my $ctrl = $builder->get_object("directory");
+	$ctrl->set_filename($cwd);
+#	LoadContents($cwd);
+}
+
+my $window = $builder->get_object("window1") or die "Can't open main window";
+
+$window->show_all();
+
+Gtk2->main();
+
+# Callbacks
+sub cb_window1_destroy {
+	Gtk2->main_quit();
+}
+
+sub cb_create {
+	my $ctrl = $builder->get_object("directory");
+	my $txt = $ctrl->get_filename();
+	
+	chdir $txt;
+	
+	$ctrl = $builder->get_object("catalogid");
+	my $catalogid = $ctrl->get_text();
+	
+	$ctrl = $builder->get_object("selflink");
+	my $selflink = $ctrl->get_text();
+	
+	$ctrl = $builder->get_object("rootlink");
+	my $rootlink = $ctrl->get_text();
+	
+	$ctrl = $builder->get_object("catalogname");
+	my $catalogname = $ctrl->get_text();
+	
+	$ctrl = $builder->get_object("catalogcreator");
+	my $catalogcreator = $ctrl->get_text();
+	
+	$ctrl = $builder->get_object("acquisitionlink");
+	my $acqprefix = $ctrl->get_text();
+	
+	CreateCatalog($txt, $catalogname, $catalogid, $selflink, $rootlink, $catalogcreator, $acqprefix);
+}
+
