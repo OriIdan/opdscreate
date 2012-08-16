@@ -50,7 +50,7 @@ sub CreateCatalog {
 		$txt = $meta{"language"};
 		print FILE "<dc:language>$txt</dc:language>\n";
 		$txt = $meta{"description"};
-		print FILE "<summery>\n$txt\n</summery>\n";
+		print FILE "<summary>\n$txt\n</summary>\n";
 		$txt = $meta{"coverimg"};
 		print FILE "<link rel=\"http://opds-spec.org/image\" href=\"$txt\" type=\"image/jpeg\">\n";
 		print FILE "<link rel=\"http://opds-spec.org/acquisition\" href=\"$acqprefix$epubname\" type=\"application/html\">\n";
