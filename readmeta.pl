@@ -32,7 +32,7 @@ sub ReadMeta {
 
 	$tempdir = tempdir(CLEANUP => 1);
 	print "Tempoarary directory: $tempdir\n";
-	system("unzip -d $tempdir $fname");
+	system("unzip -d $tempdir \"$fname\"");
 	# We now have all EPUB files in $tempdir
 	# open container.xml to find out OPF file name
 	open(HANDLE, "$tempdir/META-INF/container.xml");
